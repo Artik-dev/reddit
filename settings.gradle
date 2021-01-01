@@ -1,2 +1,4 @@
-include ':app'
-rootProject.name = "Reddit"
+include ':app',
+        ':core',
+        ':domain',
+        ':storage:remote'
