@@ -2,7 +2,7 @@ package com.artik.remote.data.response
 
 import com.google.gson.annotations.SerializedName
 
-data class RedditChildrenResponse(
+data class TopChildrenResponse(
     @SerializedName("author")
     val authorName: String?,
     val title:String?,

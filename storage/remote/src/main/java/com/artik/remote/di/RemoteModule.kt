@@ -10,7 +10,7 @@ import org.kodein.di.generic.provider
 import retrofit2.Retrofit
 
 object RemoteModule {
-    fun get() = Kodein.Module("Rmote") {
+    fun get() = Kodein.Module("Remote") {
 
         bind<TopApi>() with provider { instance<Retrofit>().create(TopApi::class.java) }
         bind<ITopRepository>() with provider { TopRepository(instance()) }
