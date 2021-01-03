@@ -17,13 +17,16 @@ import org.kodein.di.generic.instance
 class MainActivity : AppCompatActivity(), KodeinAware {
 
     private val _parentKodein by closestKodein()
+
     override val kodein: Kodein by retainedKodein {
         extend(_parentKodein)
         import(MainModule.get(this@MainActivity), allowOverride = true)
     }
+
     override val kodeinTrigger = KodeinTrigger()
 
     private val viewModel: MainViewModel by instance()
+    private val router: IMainRouter by instance()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,11 +34,18 @@ class MainActivity : AppCompatActivity(), KodeinAware {
 
         kodeinTrigger.trigger()
 
-        val adapter = MainRecyclerAdapter()
+        (router as MainRouter).attachActivity(this)
+
+        val adapter = MainRecyclerAdapter(viewModel)
         mainRecycler.adapter = adapter
 
         viewModel.mainRecyclerDataSource.observe(this, Observer {
             adapter.submitList(it)
         })
+    }
+
+    override fun onDestroy() {
+        (router as MainRouter).detachActivity()
+        super.onDestroy()
     }
 }

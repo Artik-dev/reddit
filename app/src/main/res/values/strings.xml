@@ -4,4 +4,6 @@
     <string name="author_name_prefix">Posted by %s</string>
     <string name="created_time_suffix">hours ago</string>
     <string name="comment_count">Comment count %s</string>
+    <string name="close">close</string>
+    <string name="save">save</string>
 </resources>

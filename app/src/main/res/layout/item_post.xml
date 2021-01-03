@@ -13,6 +13,10 @@
             name="data"
             type="com.artik.domain.entity.TopChildrenEntity" />
 
+        <variable
+            name="clickHandler"
+            type="com.artik.reddit.main.adapter.ImageClickHandler" />
+
     </data>
 
     <androidx.cardview.widget.CardView
@@ -65,10 +69,13 @@
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
                 android:adjustViewBounds="true"
+                android:onClick="@{()->clickHandler.onImageClickAction(data.largeImage)}"
                 android:scaleType="fitXY"
+                android:clickable="true"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="@id/authorName"
-                app:url="@{data.thumbnail}" />
+                app:url="@{data.thumbnail}"
+                android:focusable="true" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

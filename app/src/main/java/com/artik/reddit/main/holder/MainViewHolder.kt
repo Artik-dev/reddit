@@ -7,13 +7,15 @@ import androidx.recyclerview.widget.RecyclerView
 import com.artik.domain.entity.TopChildrenEntity
 import com.artik.reddit.R
 import com.artik.reddit.databinding.ItemPostBinding
+import com.artik.reddit.main.adapter.ImageClickHandler
 
 class MainViewHolder(
     private val binding: ItemPostBinding
 ) : RecyclerView.ViewHolder(binding.root) {
 
-    fun bind(data: TopChildrenEntity){
+    fun bind(data: TopChildrenEntity, clickHandler: ImageClickHandler) {
         binding.data = data
+        binding.clickHandler = clickHandler
     }
 
     companion object {

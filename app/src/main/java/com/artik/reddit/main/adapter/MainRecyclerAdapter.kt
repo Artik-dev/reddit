@@ -5,7 +5,7 @@ import androidx.paging.PagedListAdapter
 import com.artik.domain.entity.TopChildrenEntity
 import com.artik.reddit.main.holder.MainViewHolder
 
-class MainRecyclerAdapter :
+class MainRecyclerAdapter(private val clickHandler: ImageClickHandler) :
     PagedListAdapter<TopChildrenEntity, MainViewHolder>(TopPostDiffUtilCallback()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MainViewHolder {
@@ -14,7 +14,7 @@ class MainRecyclerAdapter :
 
     override fun onBindViewHolder(holder: MainViewHolder, position: Int) {
         getItem(position)?.let {
-            holder.bind(it)
+            holder.bind(it, clickHandler)
         }
     }
 }
