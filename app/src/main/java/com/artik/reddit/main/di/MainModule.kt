@@ -17,7 +17,7 @@ object MainModule {
         bind() from singleton { MainRouter() }
 
         bind<MainViewModelFactory>() with provider {
-            MainViewModelFactory(instance(), instance())
+            MainViewModelFactory(instance(), instance(), instance(), instance())
         }
 
         bind<MainViewModel>() with provider {

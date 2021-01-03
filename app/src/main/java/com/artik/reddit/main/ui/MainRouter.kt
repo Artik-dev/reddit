@@ -2,7 +2,9 @@ package com.artik.reddit.main.ui
 
 import android.graphics.Bitmap
 import android.view.LayoutInflater
+import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
+import androidx.appcompat.content.res.AppCompatResources
 import androidx.core.graphics.drawable.toBitmap
 import com.artik.reddit.R
 import com.bumptech.glide.Glide
@@ -21,7 +23,7 @@ class MainRouter : IMainRouter {
 
     override fun showLargeImageDialog(
         url: String,
-        block: (fileName: String, bitmap: Bitmap) -> Unit
+        block: (bitmap: Bitmap) -> Unit
     ) {
         activity?.let {
             LayoutInflater.from(it).inflate(R.layout.dialog_large_image, null, false).let {
@@ -32,7 +34,12 @@ class MainRouter : IMainRouter {
                 it.apply {
 
                     Glide.with(this).load(url)
-                        .placeholder(activity!!.resources.getDrawable(R.drawable.ic_placeholder))
+                        .placeholder(
+                            AppCompatResources.getDrawable(
+                                activity!!,
+                                R.drawable.ic_placeholder
+                            )
+                        )
                         .into(imageView)
 
                     btnClose.setOnClickListener {
@@ -40,14 +47,28 @@ class MainRouter : IMainRouter {
                     }
 
                     btnSave.setOnClickListener {
-                        imageView.drawable.toBitmap().let {
-                            block.invoke("${System.currentTimeMillis()}", it)
-                            dialog.dismiss()
-                        }
+
+                        imageView.drawable.toBitmap()
+                            .let {
+                                block.invoke(it)
+                                dialog.dismiss()
+                            }
                     }
                 }
                 dialog.show()
             }
+        }
+    }
+
+    override fun showToast(message: String) {
+        activity?.let {
+            Toast.makeText(it, message, Toast.LENGTH_SHORT).show()
+        }
+    }
+
+    override fun showToast(message: Int) {
+        activity?.let {
+            Toast.makeText(it, it.resources.getString(message), Toast.LENGTH_SHORT).show()
         }
     }
 }

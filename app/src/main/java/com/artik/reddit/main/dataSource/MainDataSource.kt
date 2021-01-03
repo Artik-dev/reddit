@@ -3,7 +3,6 @@ package com.artik.reddit.main.dataSource
 import androidx.paging.DataSource
 import androidx.paging.PageKeyedDataSource
 import com.artik.domain.entity.TopChildrenEntity
-import com.artik.domain.entity.TopEntity
 import com.artik.domain.useCase.top.TopUseCase
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
