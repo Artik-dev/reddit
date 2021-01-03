@@ -1,23 +1,31 @@
 package com.artik.core.ba
 
+import android.annotation.SuppressLint
 import android.widget.TextView
 import androidx.databinding.BindingAdapter
 import com.artik.core.Constants
+import java.text.SimpleDateFormat
 import java.util.*
 
+
 object TextAdapter {
+    @SuppressLint("SetTextI18n")
     @BindingAdapter(
-        "app:created"
+        value = [
+            "app:created",
+            "app:suffix"
+        ],
+        requireAll = false
     )
     @JvmStatic
     fun setCreatedTime(
         view: TextView,
-        created: Float
+        created: Long,
+        suffix: String
     ) {
-        (Date().time - created).let {
-            Constants.SIMPLE_DATA_FORMAT_HH_MM_SS.format(it).let {
-                view.text = it
-            }
+
+        (((System.currentTimeMillis()/1000 - created)/60)/60).let {
+            view.text = "$it $suffix"
         }
     }
 }

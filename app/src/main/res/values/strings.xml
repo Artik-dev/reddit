@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Reddit</string>
+
+    <string name="author_name_prefix">Posted by %s</string>
+    <string name="created_time_suffix">hours ago</string>
+    <string name="comment_count">Comment count %s</string>
 </resources>

@@ -5,7 +5,9 @@ import com.google.gson.annotations.SerializedName
 data class TopChildrenResponse(
     @SerializedName("author")
     val authorName: String?,
-    val title:String?,
+    @SerializedName("num_comments")
+    val commentCount:Int?,
+    @SerializedName("created_utc")
     val created:Float?,
     val thumbnail:String?,
     @SerializedName("url")

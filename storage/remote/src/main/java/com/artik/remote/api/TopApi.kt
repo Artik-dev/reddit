@@ -9,5 +9,8 @@ import retrofit2.http.Query
 
 interface TopApi {
     @GET("top.json")
-    fun getTopPostsAsync(@Query("limit") limit: Int): Deferred<Response<List<DataWrapper<TopResponse>>>>
+    fun getTopPostsAsync(
+        @Query("limit") limit: Int,
+        @Query("after") nextPageKey: String?
+    ): Deferred<Response<DataWrapper<TopResponse>>>
 }

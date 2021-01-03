@@ -1,28 +1,16 @@
 package com.artik.core.ba
 
-import android.graphics.drawable.Drawable
-import androidx.appcompat.widget.AppCompatImageView
+import android.widget.ImageView
 import androidx.databinding.BindingAdapter
 import com.bumptech.glide.Glide
 
 object ImageAdapter {
-    @BindingAdapter(
-        value = [
-            "app:url",
-            "app:placeholder"
-        ],
-        requireAll = false
-    )
+    @BindingAdapter("app:url")
     @JvmStatic
     fun applyImage(
-        view: AppCompatImageView,
-        url: String?,
-        placeholder: Drawable
+        view: ImageView,
+        url: String
     ) {
-        view.setImageDrawable(placeholder)
-
-        url?.let {
-            Glide.with(view).load(it).into(view)
-        }
+        Glide.with(view).load(url).into(view)
     }
 }

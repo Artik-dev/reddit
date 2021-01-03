@@ -18,10 +18,8 @@ class MainDataSource(
         callback: LoadInitialCallback<String, TopChildrenEntity>
     ) {
         scope.launch {
-            useCase.getTopPosts(PAGE_SIZE)?.let {
-                it.firstOrNull()?.let {
-                    callback.onResult(it.children, null, it.after)
-                }
+            useCase.getTopPosts(PAGE_SIZE, null)?.let {
+                callback.onResult(it.children, null, it.after)
             }
         }
     }
@@ -37,10 +35,8 @@ class MainDataSource(
         callback: LoadCallback<String, TopChildrenEntity>
     ) {
         scope.launch {
-            useCase.getTopPosts(PAGE_SIZE)?.let {
-                it.firstOrNull()?.let {
-                    callback.onResult(it.children, it.after)
-                }
+            useCase.getTopPosts(PAGE_SIZE, params.key)?.let {
+                callback.onResult(it.children, it.after)
             }
         }
     }

@@ -17,7 +17,7 @@ class MainViewModel(
     )
 
     private val pagedListConfig = PagedList.Config.Builder()
-        .setEnablePlaceholders(false)
+        .setEnablePlaceholders(true)
         .setPageSize(MainDataSource.PAGE_SIZE)
         .build()
 

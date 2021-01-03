@@ -16,8 +16,8 @@ fun TopResponse.toEntity(): TopEntity {
 fun TopChildrenResponse.toEntity(): TopChildrenEntity {
     return TopChildrenEntity(
         authorName = authorName.orEmpty(),
-        title = title.orEmpty(),
-        created = created ?: 0F,
+        commentCount = commentCount ?: 0,
+        created = created?.toLong() ?:0,
         thumbnail = thumbnail.orEmpty(),
         largeImage = largeImage.orEmpty()
     )

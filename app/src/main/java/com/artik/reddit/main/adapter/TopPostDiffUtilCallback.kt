@@ -13,7 +13,7 @@ class TopPostDiffUtilCallback : DiffUtil.ItemCallback<TopChildrenEntity>() {
         newItem: TopChildrenEntity
     ): Boolean {
         return oldItem.authorName == newItem.authorName &&
-                oldItem.title == newItem.title &&
+                oldItem.commentCount == newItem.commentCount &&
                 oldItem.created == newItem.created &&
                 oldItem.thumbnail == newItem.thumbnail &&
                 oldItem.largeImage == newItem.largeImage
